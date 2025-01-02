@@ -3,8 +3,11 @@ import LoginController from "./Controller/LoginController";
 import { swagger } from '@elysiajs/swagger'
 import { jwt } from '@elysiajs/jwt';
 import Salary from "./Controller/Admin/Salary";
-
+import { cors } from '@elysiajs/cors'
+import Get from "./Controller/Admin/Get";
+import user from "./Controller/Admin/user";
 const app = new Elysia()
+  .use(cors())
   .use(
     swagger({
         documentation: {
@@ -33,13 +36,23 @@ const app = new Elysia()
 
 
   .post("/addType", Salary.addType, {detail: {tags: ['Admin']}})
-  .post("/changType", Salary.changType, {detail: {tags: ['Admin']}})
+  .post("/changeType", Salary.changType, {detail: {tags: ['Admin']}})
   .post("/addSalary", Salary.addSalary, {detail: {tags: ['Admin']}})
-  .post("/changSalary", Salary.changSalary, {detail: {tags: ['Admin']}})
+  .post("/changeSalary", Salary.changSalary, {detail: {tags: ['Admin']}})
   .post("/reduceSalary", Salary.reduceSalary, {detail: {tags: ['Admin']}})
-  .post("/changTicket", Salary.changTicket, {detail: {tags: ['Admin']}})
+  .post("/changeTicket", Salary.changTicket, {detail: {tags: ['Admin']}})
   .post("/addTicket", Salary.addTicket, {detail: {tags: ['Admin']}})
   .post("/reduceTicket", Salary.reduceTicket, {detail: {tags: ['Admin']}})
+  .get("/userall", Get.getUserAll, {detail: {tags: ['Admin']}})
+  .post("/userhistory", Get.getHistory, {detail: {tags: ['Admin']}})
+  .post("/userhistoryall", Get.getHistoryall, {detail: {tags: ['Admin']}})
+  .post("/updateuser", user.updateuser, {detail: {tags: ['Admin']}})
+  .post("/deluser", user.deluser, {detail: {tags: ['Admin']}})
+  .post("/getdas", Get.getdas, {detail: {tags: ['Admin']}})
+
+
+  .post("/user", Get.getUser, {detail: {tags: ['User']}})
+  .post("/userhistory", Get.getHistory, {detail: {tags: ['User']}})
 
   .listen(3021);
 

@@ -18,6 +18,7 @@ model User {
     username String
     password String
     level    Int // 0 = user , 1 = admin 
+    job      String?
     type     Int // 0 = เงินเดือน, 1 = ตั๋ว, 2 = ยังไม่ได้กรอก
     Salary   Salary[]
     History  History[]
